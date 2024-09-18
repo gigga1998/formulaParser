@@ -25,7 +25,7 @@ func SeparateBrackets(formula string) []string {
 	return output
 }
 
-func SeparatePair(pair string) [3]string {
+func SeparatePair(pair string) []string {
 	/*
 		"ax + b" -> {a, b, x}
 	*/
@@ -64,8 +64,11 @@ func SeparatePair(pair string) [3]string {
 			break
 		}
 	}
-	out := [3]string{firstCoef, secondCoef, variable}
-	return out
+
+	if variable == "" {
+		return []string{"", firstCoef, ""}
+	}
+	return []string{firstCoef, secondCoef, variable}
 }
 
 func digitOrOperator(ch rune) bool {
